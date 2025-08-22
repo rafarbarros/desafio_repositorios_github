@@ -13,6 +13,8 @@ function App() {
 
   const handleAddRepo = async () => {
 
+    try{
+
     const {data} = await api.get(`repos/${currentRepo}`)
 
     if(data.id){      
@@ -25,9 +27,11 @@ function App() {
         return;
     }
   }
+    alert("Repositório já foi adicionado!");
+}catch (error){
     alert("Repositório não encontrado!");
   }
-
+}
   const handleRemoveRepo = (id) => {
     const filteredRepos = repos.filter(repo => repo.id !== id);
     setRepos(filteredRepos);
